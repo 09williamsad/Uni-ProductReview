@@ -1,0 +1,48 @@
+{{extend 'layout.html'}}
+    <div class = "row">
+        {{if auth.is_logged_in():}}
+            {{for row in product_review_data:}}
+                {{if auth.user.id == row.review.user_id:}}
+                    <div class="col-xs-12"><h2>Edit your review</h2><br /></div>
+                        <div class="col-xs-3">
+                            <img style="max-height:300px;" class="img-responsive" src="{{=URL('static', 'images/products//')}}{{=row.product.product_image}}" width="300">
+                        </div>
+                        <div class="col-xs-7">
+                            <p>Name: {{=row.product.product_name}}<br></p>
+                            <p>Category: {{=row.product.product_type}}</p>
+                            <p>Description: {{=row.product.product_description}}</p>
+                            <p>Stock: {{=row.product.product_stock}}</p>
+                            <p>Price: £{{=row.product.product_price}}</p>
+                        </div>
+                    <form action="#" enctype="multipart/form-data" method="post">
+                        <ul>
+                            <div class="col-xs-10"><br />Edit your review for this product<textarea name="review_text" class="form-control"/>{{=row.review.review_text}}</textarea></div>
+                            <div class="col-xs-1">
+                                <br />Rating:
+                                <select class="form-control" name="review_rating">
+                                    <option {{if row.review.review_rating == 0:}} selected="selected" {{pass}}>0</option>
+                                    <option {{if row.review.review_rating == 1:}} selected="selected" {{pass}}>1</option>
+                                    <option {{if row.review.review_rating == 2:}} selected="selected" {{pass}}>2</option>
+                                    <option {{if row.review.review_rating == 3:}} selected="selected" {{pass}}>3</option>
+                                    <option {{if row.review.review_rating == 4:}} selected="selected" {{pass}}>4</option>
+                                    <option {{if row.review.review_rating == 5:}} selected="selected" {{pass}}>5</option>
+                                </select>
+                            </div>
+                            <input name = "product_id" value="{{=row.review.product_id}}" type="hidden" readonly/>
+                            <input name = "user_id" value ="{{=row.review.user_id}}" type="hidden" readonly/>
+                            <input name = "id" value ="{{=row.review.id}}" type="hidden" readonly/>
+                            <div class="col-xs-1">
+                            <br /><br />
+                                <input type="submit" value="Submit edits"/>
+                            </div>
+                        </ul>
+                        <input type="hidden" name="_formname" value="edit_review_form"/>
+                    </form>
+                {{else:}}
+                    <p>You must be logged in as the user who made the review to edit the review.</p>
+                {{pass}}
+            {{pass}}
+        {{else:}}
+            <p>You must be logged in as the user who made the review to edit the review.</p>
+        {{pass}}
+    </div>

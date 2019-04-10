@@ -1,0 +1,41 @@
+{{extend 'layout.html'}}
+    <div class = "row">
+        <div class="col-xs-12"><h2>User management</h2></div>
+        <br /><br /><br /><br />
+        <div class = "col-xs-6">
+            <p>Regular users</p>
+            <table>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Name and surname</th>
+                <th>Email</th>
+                {{for row in regular_users:}}
+                    <tr>
+                        <td>{{=row.id}}</td>
+                        <td>{{=row.username}}</td>
+                        <td>{{=row.first_name}} {{=row.last_name}}</td>
+                        <td>{{=row.email}}</td>
+                        <td>{{=A("Promote to admin", callback=URL(r=request, f='promote_user', args=[row.id]))}}</td>
+                    </tr>
+                {{pass}}
+            </table>
+        </div>
+        <div class = "col-xs-6">
+            <p>Administrators</p>
+            <table>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Name and surname</th>
+                <th>Email</th>
+                {{for row in admin_users:}}
+                    <tr>
+                        <td>{{=row.auth_user.id}}</td>
+                        <td>{{=row.auth_user.username}}</td>
+                        <td>{{=row.auth_user.first_name}} {{=row.auth_user.last_name}}</td>
+                        <td>{{=row.auth_user.email}}</td>
+                        <td>{{=A("Demote to user", callback=URL(r=request, f='demote_admin', args=[row.site_admin.id]))}}</td>
+                    </tr>
+                {{pass}}
+            </table>
+        </div>
+    </div>

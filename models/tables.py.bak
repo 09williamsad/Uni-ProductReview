@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+db.define_table('product',
+                db.Field('product_name', 'string', required=True),
+                db.Field('product_type', 'string', required=True),
+                db.Field('product_description', 'text', required=True))
+
+db.define_table('review',
+                db.Field('review_text', 'text', required=True),
+                db.Field('product_id', db.product, 'string', required=True),
+                db.Field('user_id', db.auth_user, 'string', required=True),
+                db.Field('review_rating', 'integer', required=True))
+
+db.define_table('admin',
+                db.Field('user_id', db.auth_user, 'string', required=True))

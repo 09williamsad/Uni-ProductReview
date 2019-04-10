@@ -1,0 +1,91 @@
+{{extend 'layout.html'}}
+    <div class = "row">
+        {{for row in product_query:}}
+            <div class="col-xs-4">
+                <img style="max-height:550px;" class="img-responsive" src="{{=URL('static', 'images/products//')}}{{=row.product_image}}" width="400">
+            </div>
+            <div class="col-xs-6">
+                <p>Name: {{=row.product_name}}<br></p>
+                <p>Category: {{=row.product_type}}</p>
+                <p>Description: {{=row.product_description}}</p>
+                <p>Stock: {{=row.product_stock}}</p>
+                <p>Price: £{{=row.product_price}}</p>
+                <br/>
+            </div>
+            <div class="col-xs-2">
+                <br /><br /><br /><br />
+                {{if auth.is_logged_in():}}
+                    {{if db((auth.user.id == db.site_admin.user_id)).count():}}
+                        <p>{{=A("Edit product", _href=URL(r=request, f='edit_product', args=[row.id]))}}</p>
+                        <br />
+                        <p>{{=A("Delete product", callback=URL(r=request, f='delete_product', args=[row.id]))}}</p>
+                    {{pass}}
+                {{pass}}
+            </div>
+        {{pass}}
+    </div>
+    <div class = "row">
+        <div>
+            {{if review_score_average == 0:}}
+                <p>No reviews for this product</p>
+            {{else:}}
+                <p>Reviews for this product:</p>
+                <table id="reviews_table">
+                    {{for row in product_reviews:}}
+                        <tr>
+                            <td>{{=row.review.review_text}}</td>
+                            <td class = "tight">
+                                <img class="img-responsive" src="{{=URL('static', 'images/stars/')}}{{=row.review.review_rating}}_star_s.png">
+                            </td>
+                            <td>By {{=row.auth_user.username}}</td>
+                            <td>
+                                {{if auth.is_logged_in():}}
+                                    {{if auth.user.id == row.review.user_id:}}
+                                        <p>{{=A("Edit review", _href=URL(r=request, f='edit_review', args=[row.review.id]))}}</p>
+                                    {{pass}}
+                                    {{if db((auth.user.id == db.site_admin.user_id)).count() or auth.user.id == row.review.user_id:}}
+                                        <p>{{=A("Delete review", callback=URL(r=request, f='delete', args=[row.review.id]))}}</p>
+                                    {{pass}}
+                                {{pass}}
+                            </td>
+                        </tr>
+                    {{pass}}
+                </table>
+                <br>
+                <p>Average review score for this product: {{=review_score_average}}</p>
+            {{pass}}
+        </div>
+    </div>
+    {{review_exists = db((db.review.product_id == product_link) & (db.review.user_id == auth.user_id)).count()}}
+    {{if auth.is_logged_in() & review_exists == 1:}}
+        <p>Only one review per user.</p>
+    {{elif auth.is_logged_in():}}
+        <br />
+        <div class = "row">
+            <form action="#" enctype="multipart/form-data" method="post">
+                <ul>
+                    <div class="col-xs-10">Submit a review for this product<textarea name="review_text" class="form-control"/></textarea></div>
+                    <div class="col-xs-1">
+                        <p>Rating:</p>
+                        <select class="form-control" name="review_rating">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <input name = "product_id" value="{{=product_link}}" type="hidden" readonly/>
+                    <input name = "user_id" value = "{{=auth.user_id}}" type="hidden" readonly/>
+                    <div class="col-xs-1">
+                        <br />
+                        <input type="submit" value="Submit review"/>
+                    </div>
+                </ul>
+                <input type="hidden" name="_formname" value="review_form"/>
+            </form>
+        </div>
+    {{else:}}
+        <p>Please login to submit a review</p>
+    {{pass}}

@@ -1,0 +1,65 @@
+{{extend 'layout.html'}}
+    <div class = "row">
+        {{if auth.is_logged_in():}}
+            {{if db((auth.user.id == db.site_admin.user_id)).count():}}
+                <div class = "col-xs-12"><h2>Edit product</h2><br /></div>
+                {{for row in product_query:}}
+                    <form action="#" enctype="multipart/form-data" method="post">
+                        <ul>
+                            <div class = "row">
+                                <div class = "col-xs-2">
+                                    <p>Product name</p>
+                                    <input type ="text" name = "product_name" value = "{{=row.product_name}}"/>
+                                </div>
+                                <div class = "col-xs-2">
+                                    <p>Product type:</p>
+                                    <select class="form-control" name="product_type" value = "{{=row.product_type}}">
+                                        <option>Automotive</option>
+                                        <option>Aeronautics</option>
+                                        <option>Hardware</option>
+                                        <option>Software</option>
+                                        <option>Furnature</option>
+                                        <option>Tools</option>
+                                        <option>Kitchen Appliances</option>
+                                        <option>Food Stuffs</option>
+                                        <option>Structures</option>
+                                        <option>Travel</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div class = "col-xs-2">
+                                    <p>Product stock</p>
+                                    <input type ="text" name = "product_stock" value = "{{=row.product_stock}}"/>
+                                </div>
+                                <div class = "col-xs-2">
+                                    <p>Product price</p>
+                                    <input type ="text" name = "product_price" value = "{{=row.product_price}}"/>
+                                </div>
+                                <div class = "col-xs-2">
+                                    <p>Product image</p>
+                                    <input name="product_image" type="file" class="upload" name="image"/>
+                                </div>
+                                <div class = "col-xs-2">
+                                    <p>Current product image</p>
+                                    <img style="max-height:250px;" class="img-responsive" src="{{=URL('static', 'images/products//')}}{{=row.product_image}}">
+                                </div>
+                            </div>
+                            <br />
+                            <div class = "col-xs-12">
+                                <p>Enter a description of the product</p>
+                                <textarea name="product_description" class="form-control"/>{{=row.product_description}}</textarea>
+                            <br />
+                            </div>
+                            <input type="submit" value="Submit edit"/>
+                        </ul>
+                        <input name = "id" value="{{=row.id}}" type="hidden" readonly/>
+                        <input type="hidden" name="_formname" value="edit_product_form"/>
+                    </form>
+                {{pass}}
+            {{else:}}
+                <p>Only admins can edit products, please login as an admin if you are one.</p>
+            {{pass}}
+        {{else:}}
+            <p>Only admins can edit products, please login as an admin if you are one.</p>
+        {{pass}}
+    </div>

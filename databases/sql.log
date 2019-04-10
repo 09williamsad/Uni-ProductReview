@@ -1,0 +1,1093 @@
+timestamp: 2017-03-06T17:01:27.918000
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2017-03-06T17:01:28.074000
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2017-03-06T17:01:28.246000
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2017-03-06T17:01:28.402000
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2017-03-06T17:01:28.589000
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2017-03-06T17:01:28.823000
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2017-03-10T13:37:38.388000
+CREATE TABLE it_projects(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    project_name CHAR(255),
+    description TEXT,
+    is_active CHAR(1),
+    created_on TIMESTAMP
+);
+success!
+timestamp: 2017-03-10T14:10:00.685000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name TEXT
+);
+success!
+timestamp: 2017-03-10T14:39:03.380000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+timestamp: 2017-03-10T14:39:35.687000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+timestamp: 2017-03-10T14:39:51.787000
+CREATE TABLE product2(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+success!
+timestamp: 2017-03-10T14:40:04.657000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+timestamp: 2017-03-10T14:41:10.941000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+timestamp: 2017-03-10T14:42:10.814000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+timestamp: 2017-03-10T14:42:29.628000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+timestamp: 2017-03-10T14:42:58.987000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+timestamp: 2017-03-10T14:43:38.783000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+timestamp: 2017-03-10T14:55:46.929000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+timestamp: 2017-03-10T14:56:04.947000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+timestamp: 2017-03-10T14:57:05.023000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+timestamp: 2017-03-10T14:57:34.320000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+faked!
+timestamp: 2017-03-10T14:58:20.106000
+ALTER TABLE product ADD product_name CHAR(512);
+faked!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2017-03-10T15:33:30.181000
+CREATE TABLE site_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_first_name CHAR(512),
+    user_last_name CHAR(512),
+    user_email CHAR(512),
+    user_password CHAR(512),
+    user_type CHAR(512)
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2017-03-10T15:45:52.821000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    user_id INTEGER REFERENCES site_user (id) ON DELETE CASCADE  ,
+    review_rating INTEGER
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2017-03-13T10:31:50.977000
+ALTER TABLE product ADD product_type CHAR(512);
+faked!
+timestamp: 2017-03-13T10:31:51.024000
+ALTER TABLE product ADD product_manufacturer CHAR(512);
+faked!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2017-03-13T11:23:38.674000
+ALTER TABLE product ADD product_description TEXT;
+success!
+success!
+success!
+success!
+success!
+success!
+DROP TABLE product;
+success!
+timestamp: 2017-03-13T11:26:12.584000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name CHAR(512),
+    product_type CHAR(512),
+    product_description TEXT
+);
+success!
+DROP TABLE product;
+success!
+timestamp: 2017-03-13T11:26:25.236000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name CHAR(512),
+    product_type CHAR(512),
+    product_description TEXT
+);
+success!
+DROP TABLE site_user;
+success!
+timestamp: 2017-03-15T11:55:07.609000
+CREATE TABLE site_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_first_name CHAR(512),
+    user_last_name CHAR(512),
+    user_email CHAR(512),
+    user_password CHAR(512),
+    user_type CHAR(512)
+);
+success!
+DROP TABLE site_user;
+success!
+timestamp: 2017-03-15T11:55:12.429000
+CREATE TABLE site_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_first_name CHAR(512),
+    user_last_name CHAR(512),
+    user_email CHAR(512),
+    user_password CHAR(512),
+    user_type CHAR(512)
+);
+success!
+DROP TABLE site_user;
+success!
+success!
+timestamp: 2017-03-15T12:34:59.659000
+CREATE TABLE site_admin(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+DROP TABLE review;
+DROP TABLE review;
+success!
+timestamp: 2017-03-20T16:34:41.682000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    review_rating INTEGER
+);
+success!
+DROP TABLE review;
+success!
+timestamp: 2017-03-20T16:34:43.054000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    review_rating INTEGER
+);
+success!
+DROP TABLE review;
+success!
+timestamp: 2017-03-20T16:35:16.860000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    review_rating INTEGER
+);
+success!
+success!
+success!
+success!
+success!
+success!
+DROP TABLE review;
+success!
+timestamp: 2017-03-21T19:46:28.011000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    review_rating INTEGER
+);
+success!
+DROP TABLE review;
+success!
+timestamp: 2017-03-21T19:47:49.849000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    review_rating INTEGER
+);
+success!
+DROP TABLE review;
+success!
+timestamp: 2017-03-21T20:01:12.002000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    review_rating INTEGER
+);
+success!
+DROP TABLE review;
+success!
+timestamp: 2017-03-21T20:11:38.359000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    review_rating INTEGER
+);
+success!
+success!
+DROP TABLE review;
+success!
+timestamp: 2017-03-21T20:33:37.139000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    review_rating INTEGER,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+DROP TABLE review;
+success!
+timestamp: 2017-03-21T20:33:56.607000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    review_rating INTEGER,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+DROP TABLE review;
+success!
+DROP TABLE product;
+success!
+timestamp: 2017-04-01T13:46:39.191000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name CHAR(512),
+    product_type CHAR(512),
+    product_stock INTEGER,
+    product_price DOUBLE,
+    product_description TEXT
+);
+success!
+timestamp: 2017-04-01T13:47:58.844000
+CREATE TABLE review(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    review_text TEXT,
+    review_rating INTEGER,
+    product_id INTEGER REFERENCES product (id) ON DELETE CASCADE  ,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2017-04-01T16:17:29.522000
+ALTER TABLE product ADD product_image CHAR(512);
+success!
+DROP TABLE product;
+success!
+timestamp: 2017-04-01T16:19:25.337000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name CHAR(512),
+    product_type CHAR(512),
+    product_stock INTEGER,
+    product_price DOUBLE,
+    product_description TEXT,
+    product_image CHAR(512)
+);
+success!
+DROP TABLE product;
+success!
+timestamp: 2017-04-01T16:19:29.346000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name CHAR(512),
+    product_type CHAR(512),
+    product_stock INTEGER,
+    product_price DOUBLE,
+    product_description TEXT,
+    product_image CHAR(512)
+);
+success!
+DROP TABLE product;
+success!
+timestamp: 2017-04-01T16:20:19.017000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name CHAR(512),
+    product_type CHAR(512),
+    product_stock INTEGER,
+    product_price DOUBLE,
+    product_description TEXT,
+    product_image CHAR(512)
+);
+success!
+timestamp: 2017-04-03T15:48:31.628000
+ALTER TABLE site_admin ADD admin_type CHAR(512);
+success!
+timestamp: 2017-04-04T09:04:52.730000
+ALTER TABLE auth_user ADD username CHAR(128);
+success!
+success!
+success!
+success!

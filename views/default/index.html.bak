@@ -1,0 +1,56 @@
+{{extend 'layout.html'}}
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Product search</h2>
+            <p>Enter the name of a product or term you want to search for in the below text box then click "Search", or click the button with nothing in the text box to show all products.</p>
+            {{=form}}
+            {{=msg}}
+            <table>
+                {{if auth.is_logged_in():}}
+                    {{if db((auth.user.id == db.site_admin.user_id)).count():}}
+                        <th>Product ID</th>
+                    {{pass}}
+                {{pass}}
+                <th>Product name</th>
+                <th>Product type</th>
+                <th>Product description</th>
+                <th>Product stock</th>
+                <th>Product price</th>
+                {{for row in search_results:}}
+                <tr>
+                    {{if auth.is_logged_in():}}
+                        {{if db((auth.user.id == db.site_admin.user_id)).count():}}
+                            <td>{{=row.id}}</td>
+                        {{pass}}
+                    {{pass}}
+                    <td>{{=A(row.product_name, _href=URL(r=request, f='product', args=[row.id]))}}<br>
+                        <img style="max-height:150px;" class="img-thumbnail"  src="{{=URL('static', 'images/products//')}}{{=row.product_image}}" width="170">
+                    </td>
+                    <td>{{=row.product_type}}</td>
+                    <td>{{=row.product_description}}</td>
+                    <td>{{=row.product_stock}}</td>
+                    <td>£{{=row.product_price}}</td>
+                </tr>
+                {{pass}}
+            </table>
+        </div>
+        <div class="col-md-12">
+            <br />
+            <p>Random existing reviews:</p>
+            <br />
+            <table>
+                {{for row in random_results:}}
+                    <tr>
+                        <td>{{=A(row.product.product_name, _href=URL(r=request, f='product', args=[row.product.id]))}}<br>
+                            <img style="max-height:150px;" class="img-thumbnail"  src="{{=URL('static', 'images/products//')}}{{=row.product.product_image}}" width="170">
+                        </td>
+                        <td>{{=row.review.review_text}}</td>
+                        <td class = "tight">
+                            <img class="img-responsive" src="{{=URL('static', 'images/stars/')}}{{=row.review.review_rating}}_star_s.png">
+                        </td>
+                        <td>By {{=row.auth_user.username}}</td>
+                    </tr>
+                {{pass}}
+            </table>
+        </div>
+    </div>

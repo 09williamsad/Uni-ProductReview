@@ -1,0 +1,59 @@
+{{extend 'layout.html'}}
+    <div class = "row">
+        {{if auth.is_logged_in():}}
+            {{if db((auth.user.id == db.site_admin.user_id)).count():}}
+                <div class="col-xs-12"><h2>Add a product</h2></div>
+                <br /><br /><br /><br />
+                <form action="#" enctype="multipart/form-data" method="post">
+                    <ul>
+                        <div class = "row">
+                            <div class = "col-xs-2">
+                                <p>Product name</p>
+                                <input type ="text" name = "product_name"/>
+                            </div>
+                            <div class = "col-xs-2">
+                                <p>Product category:</p>
+                                <select class="form-control" name="product_type">
+                                    <option>Automotive</option>
+                                    <option>Aeronautics</option>
+                                    <option>Hardware</option>
+                                    <option>Software</option>
+                                    <option>Furnature</option>
+                                    <option>Tools</option>
+                                    <option>Kitchen Appliances</option>
+                                    <option>Food Stuffs</option>
+                                    <option>Structures</option>
+                                    <option>Travel</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class = "col-xs-2">
+                                <p>Product stock (whole number)</p>
+                                <input type ="text" name = "product_stock"/>
+                            </div>
+                            <div class = "col-xs-2">
+                                <p>Product price (number)</p>
+                                <input type ="text" name = "product_price"/>
+                            </div>
+                            <div class = "col-xs-2">
+                                <p>Product image</p>
+                                <input name="product_image" type="file" class="upload" name="image"/>
+                            </div>
+                        </div>
+                        <br />
+                        <div class = "col-xs-12">
+                            <p>Enter a description of the product</p>
+                            <textarea name="product_description" class="form-control"/></textarea>
+                        <br />
+                        </div>
+                        <input type="submit" value="Add product"/>
+                    </ul>
+                    <input type="hidden" name="_formname" value="add_product_form"/>
+                </form>
+            {{else:}}
+                <p>Only admins can add products, please login as an admin if you are one.</p>
+            {{pass}}
+        {{else:}}
+            <p>Only admins can add products, please login as an admin if you are one.</p>
+        {{pass}}
+    </div>

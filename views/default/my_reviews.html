@@ -1,0 +1,37 @@
+{{extend 'layout.html'}}
+    <div class="row">
+        <div class="col-xs-12">
+            {{if auth.is_logged_in():}}
+                <h2>My reviews</h2>
+                <br />
+                {{if my_reviews is not False:}}
+                    <p>Your reviews:</p>
+                    <br />
+                    <table>
+                        <th>Product</th>
+                        <th>Review text</th>
+                        <th>Review rating</th>
+                        {{for row in my_reviews:}}
+                            <tr>
+                                <td>{{=A(row.product.product_name, _href=URL(r=request, f='product', args=[row.product.id]))}}<br>
+                                    <img style="max-height:150px;" class="img-thumbnail"  src="{{=URL('static', 'images/products/')}}{{=row.product.product_image}}" width="170">
+                                </td>
+                                <td>{{=row.review.review_text}}</td>
+                                <td class = "tight">
+                                    <img class="img-responsive" src="{{=URL('static', 'images/stars/')}}{{=row.review.review_rating}}_star_s.png">
+                                </td>
+                                <td>
+                                    <p>{{=A("Edit review", _href=URL(r=request, f='edit_review', args=[row.review.id]))}}</p>
+                                    <p>{{=A("Delete review", callback=URL(r=request, f='delete', args=[row.review.id]))}}</p>
+                                </td>
+                            </tr>
+                        {{pass}}
+                    </table>
+                {{else:}}
+                    <p>You have no reviews.</p>
+                {{pass}}
+            {{else:}}
+                <p>Please login to see your reviews.</p>
+            {{pass}}
+        </div>
+    </div>

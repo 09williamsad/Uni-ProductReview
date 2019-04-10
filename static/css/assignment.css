@@ -1,0 +1,34 @@
+td {
+padding-right: 10px !important;
+}
+
+th {
+padding-right: 10px !important;
+}
+
+.navbar-default {
+  background-color: #a6a6a6 !important;
+  border-color: #a6a6a6 !important;
+}
+
+.footer {
+    background: #a6a6a6 !important;
+    color: #a6a6a6 !important;
+}
+
+input[type=text] {
+    background-color: #ffffff !important;
+    color: black !important;
+}
+
+.button {
+  font: bold 11px Arial !important;
+  text-decoration: none !important;
+  background-color: #EEEEEE !important;
+  color: #333333 !important;
+  padding: 2px 6px 2px 6px !important;
+  border-top: 1px solid #CCCCCC !important;
+  border-right: 1px solid #333333 !important;
+  border-bottom: 1px solid #333333 !important;
+  border-left: 1px solid #CCCCCC !important;
+}

@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+
+db.site_user.insert(user_first_name="Carol",
+                    user_last_name="Andrews",
+                    user_email = "candrews7@princeton.edu",
+                    user_password = "dBlpf2ezOE",
+                    user_type = "admin")
+
+db.product.insert(product_name="Supreme Toaster",
+                  product_type ="kitchen appliances",
+                  product_description = "The toaster of the future, today!")
